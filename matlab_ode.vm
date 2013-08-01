@@ -1,0 +1,48 @@
+% matlab script automatically generated from a lems/som description
+########################################################
+#macro (rollK $map)#foreach ($k in $map)$k, #end#end
+##
+#macro (rollV $map)#foreach ($k in $map)$map.get($k), #end#end
+##
+#macro (unpackNames $map $indent)#foreach ($k in $map)$indent$k = $map.get($k);
+#end#end##
+##
+#macro (idx2names $name $map $indent)#foreach ($k in $map)$indent $k = ${name}($velocityCount);
+#end#end##
+#########################################################
+function integrate_${name}()
+    %Integrate the $name model using matlab odesuite
+
+    %parameter list for your convenience
+#foreach ($par in $parameters)##
+    $par = $parameters.get($par);
+#end
+    %assemble parameter array    
+    pars = [#rollK($parameters)];
+    
+    %initial conditions
+    x0 = [#rollV($state)];
+    
+    %the actual integration
+    [t, x] = ode45(@(t, x) dxdt(t, x, pars), $t_start:$dt:$t_end, x0);
+
+    plot(t, x, '-')
+end
+
+
+function xdot = dxdt(t, state, pars)
+
+xdot = zeros(length(state),1);
+
+#idx2names("state", $state, "   ")##
+
+#idx2names("pars", $parameters, "   ")##
+
+#unpackNames($state_functions, "    ")##
+
+#foreach ($xi in $state)##
+    xdot($velocityCount) = $dynamics.get($xi);
+#end
+
+
+end
