@@ -3,9 +3,9 @@ som-codegen
 
 Testing possible S.implified O.DE M.odels, used to generate code for numerical integrators from LEMS models.
 
-====================================    
-    Tentative specification
-    ----------------------
+
+Tentative specification
+-----------------------
 
 example:
 ```
@@ -22,7 +22,7 @@ example:
 
 * Fields:
 
-    * name: 
+    * _name_: 
     
     * _state_: object containing 'var name':'initial val' pairs.
         A compact way of determining both state variable names and initial
@@ -52,12 +52,12 @@ example:
             f(x,s,p,t) is increasing, decreasing or both.
         * _effect_: object containing state/parameter attributions for when
             condition is met (probably add a "dynamics":{"xi":"dxi/dt"}
-            attribute to handle "regime" transitions) see relevant
+            attribute to handle "regime" transitions). See relevant
             discussion at
             http://www.neuron.yale.edu/neuron/static/docs/help/neuron/neuron/classes/cvode.html#Events
     
     * _t_start_:
 
-    * _t_end__:
+    * _t_end_:
 
     * _dt_:
