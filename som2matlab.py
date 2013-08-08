@@ -16,7 +16,13 @@ with open(sys.argv[1]) as f:
 m = m.replace('**', '.^')
 
 #IMPORTANT: USE ORDERED DICT TO PRESERVE VAR ORDERING
-model = json.JSONDecoder(object_pairs_hook=collections.OrderedDict).decode(m)
+# also making it work with velocity/java by creating a method:
+class kludgeDict(collections.OrderedDict):
+    def keySet(self):
+        return self.keys()
+
+
+model = json.JSONDecoder(object_pairs_hook=kludgeDict).decode(m)
 
 with open(sys.argv[2]) as f:
     templ = airspeed.Template(f.read())
