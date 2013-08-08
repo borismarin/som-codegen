@@ -8,15 +8,15 @@ Tentative specification
 -----------------------
 
 example:
-```
-{"name" : "izhikevich burster",
+```json
+{"name" : "izhikevich_burster",
  "state": {"v": "v0", "u": "b*v0"},
  "state_functions": {"phi": "0.04 * v**2 + 5*v + 140"},
  "dynamics":  {"v": "phi - u + I", "u": "a * (b * v - u)"},
  "parameters":{"a": "0.02", "b": "0.2", "c": "-50", "d": "2", "I": "0", "v0": "-70"},
- "events": [{"name": "spike", "condition": "v - 30",  "direction" : "+", "effect": {"v": "c", "u": "u + d"}},
-            {"name": "start_inj", "condition": "t - 30",  "direction" : "+", "effect": {"I":"15"}},
-            {"name": "end_inj", "condition": "t - 150",  "direction" : "+", "effect": {"I": "0"}}],
+ "events": [{"name": "spike", "condition": "v - 30",  "direction" : "+", "effect": {"state": {"v": "c", "u": "u + d"}}},
+            {"name": "start_inj", "condition": "t - 30",  "direction" : "+", "effect": {"parameters": {"I":"15"}}},
+            {"name": "end_inj", "condition": "t - 150",  "direction" : "+", "effect": {"parameters": {"I": "0"}}}],
  "t_start": "0", "t_end": "300", "dt": "0.01"}
 ```    
 
@@ -50,11 +50,9 @@ example:
             dynamical variables, state functions, parameters or time
         * _direction_: "+", "-" or "0" if the condition is met where
             f(x,s,p,t) is increasing, decreasing or both.
-        * _effect_: object containing state/parameter attributions for when
-            condition is met (probably add a "dynamics":{"xi":"dxi/dt"}
-            attribute to handle "regime" transitions). See relevant
-            discussion at
-            http://www.neuron.yale.edu/neuron/static/docs/help/neuron/neuron/classes/cvode.html#Events
+        * _effect_: object containing at least one of _state_,
+            _parameter_ or _dynamics_ field, defining attributions
+            for when _condition_ is met.
     
     * _t_start_:
 
