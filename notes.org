@@ -1,0 +1,21 @@
+* Ideas to be considered
+   
+** SOM specification 
+   - Lems "regimes" should be incorporated as a list of "dynamics"
+     elements, instead of inside events[dynamics]. This way, all
+     regimes will be treated equally.
+   - network (i.e. populations + connections) specification. Notice
+     that event handling for pops. can be complicated (see Brette's
+     paper http://arxiv.org/abs/q-bio.NC/0611089, Neuron
+     http://www.neuron.yale.edu/hg/neuron/nrn/file/0fe62e501b97/src/nrncvode
+     )
+ 
+ 
+** common integrator features 
+   - non-negativivity of gating vars/ concentrations must be taken
+     into account by ode solvers
+   - extend solution or restart solvers: check numerics/cvode event
+     discussion @
+     http://computation.llnl.gov/casc/sundials/support/notes.html#disc
+     http://computation.llnl.gov/casc/sundials/support/faq.html#cvode_tols
+     
