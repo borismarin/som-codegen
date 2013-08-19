@@ -1,7 +1,7 @@
-som-codegen
-===========
+som-eco
+========
 
-Testing possible S.implified O.DE M.odels, used to generate code for numerical integrators from LEMS models.
+moving some SOM elements to ECO, which is in charge of controlling simulations/event handling
 
 
 Tentative specification
@@ -9,39 +9,45 @@ Tentative specification
 
 example:
 ```json
-{"name" : "izhikevich_burster",
- "state": {"v": "v0", "u": "b*v0"},
- "state_functions": {"phi": "0.04 * v**2 + 5*v + 140"},
- "dynamics":  {"v": "phi - u + I", "u": "a * (b * v - u)"},
- "parameters":{"a": "0.02", "b": "0.2", "c": "-50", "d": "2", "I": "0", "v0": "-70"},
- "events": [{"name": "spike", "condition": "v - 30",  "direction" : "+", "effect": {"state": {"v": "c", "u": "u + d"}}},
-            {"name": "start_inj", "condition": "t - 30",  "direction" : "+", "effect": {"parameters": {"I":"15"}}},
-            {"name": "end_inj", "condition": "t - 150",  "direction" : "+", "effect": {"parameters": {"I": "0"}}}],
- "t_start": "0", "t_end": "300", "dt": "0.01"}
+{
+    "name": "bouncy_ball", 
+    "eco": 
+    [{"name": "ball_0", "dynamics": {"x":"v", "v":"-g*x"}, "observables": {"x": 1, "v": 0, "g": 9.8}},
+    [{"name": "bounce", "effect":"v=-b*v", "condition": "x == 0"}]
+    ],
+
+    "t_start": 0,
+    "t_end": 10,
+    "output": {"ball_0":["x", "v"]}
+}
+	    
 ```    
 
+
+
 * Fields:
+  * _eco_ (Event COordinator matrix)
+  The _eco_ matrix has _n_ rows and _n+1_ columns, where _n_ is the
+  number of elements in the network. The first column consists in
+  model specification objects with form:
 
-    * _name_: 
+      * _name_: 
     
-    * _state_: object containing 'var name':'initial val' pairs.
-        A compact way of determining both state variable names and initial
-        values for integration. To be revised, since it introduces
-        redundancy (see "dynamics" below).
+      * _observables_: object containing 'var name':'val'
+      	pairs. Encapsulates both initial conditions for dynamic
+        variables and parameters
 
-    * _state_functions_: object containing 'func name':'expression' pairs.
-        Auxiliary expressions (possibly) involving parameters and state
-        variables. Are always recalculated at each integration step.
+      * _state_functions_: object containing 'func name':'expression' pairs.
+          Auxiliary expressions (possibly) involving parameters and state
+          variables. Are always recalculated at each integration step.
 
-    * _dynamics_: object containing 'var name':'expression' pairs.
-        Dynamics (in the form of time derivatives) of each state variable.
-        Must contain the same key names as the "state" def above.
+      * _dynamics_: object containing 'var name':'expression' pairs.
+          Dynamics (in the form of time derivatives) of each state variable.
 
-    * _parameters_: object containing 'par name':'par value' pairs.
-        Parameters are expressions which do not have dynamics, i.e. will
-        not be integrated. Parameters can be changed through events,
-        though.
-
+    The subsequent _n_ columns correspond to event descriptions, where
+    M_ij is a list of _event_ objects linking elements _ij_ . Diagonal
+    terms correspond to events local to a given element (e.g. spike in
+    an IF neuron)
 
     * _events_: list of objects with fields
         * _name_:
@@ -53,7 +59,8 @@ example:
         * _effect_: object containing at least one of _state_,
             _parameter_ or _dynamics_ field, defining attributions
             for when _condition_ is met.
-    
+
+
     * _t_start_:
 
     * _t_end_:
