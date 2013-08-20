@@ -1,11 +1,13 @@
 {
     "name": "bouncy_ball", 
+    "elements": [{"name": "ball", "dynamics": {"x":"v", "v":"-g"}, "parameters": {"g": 9.8, "r": 0.9}}],
     "eco": 
-    [{"name": "ball_0", "dynamics": {"x":"v", "v":"-g*x"}, "observables": {"x": 1, "v": 0, "g": 9.8}},
-	[{"name": "bounce", "effect":"v=-b*v", "condition": "x == 0"}]
+    [
+	[{"name": "bounce", "effect":{"v": "-b * v", "x": 0}, "condition": "x - 0", "direction": "-"}]
     ],
 
     "t_start": 0,
     "t_end": 10,
-    "output": {"ball_0":["x", "v"]}
+    "initial_conditions": {"ball_0": {"x":10, "y":0}},
+    "output": {"ball":["x", "v"]}
 }

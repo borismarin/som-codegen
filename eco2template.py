@@ -11,7 +11,7 @@ def py2m(model, templatefile):
     with open(templatefile) as f:
         templ = airspeed.Template(f.read())
     return templ.merge(model)
-
+    
 
 def eco2py(modelfile):
     import json

@@ -1,15 +1,13 @@
 * Ideas to be considered
+  
+** ECO specification
+   - the connectivity matrix is sparse. Writing it explicitly is
+   definetely not the best representation. A list of i->j connections
+   would be the obvious solution.
+   - dealing with elements whose dynamics are not defined in terms of
+   differential equations. External inputs must be automatically
+   interpolated.
    
-** SOM specification 
-   - Lems "regimes" should be incorporated as a list of "dynamics"
-     elements, instead of inside events[dynamics]. This way, all
-     regimes will be treated equally.
-   - network (i.e. populations + connections) specification. Notice
-     that event handling for pops. can be complicated (see Brette's
-     paper http://arxiv.org/abs/q-bio.NC/0611089, Neuron
-     http://www.neuron.yale.edu/hg/neuron/nrn/file/0fe62e501b97/src/nrncvode
-     )
- 
  
 ** common integrator features 
    - non-negativivity of gating vars/ concentrations must be taken

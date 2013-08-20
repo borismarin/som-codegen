@@ -1,2 +1,4 @@
-#foreach($el in $eco) $velocityCount $el 
+#foreach($ic in $initial_conditions.keySet())
+  element $velocityCount $ic $initial_conditions.get($ic)
 #end
+
