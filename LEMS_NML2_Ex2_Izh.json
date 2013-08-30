@@ -31,7 +31,7 @@
     "U" : "(v0 * (b / MVOLT))"
   },
   "state_functions" : {
-    "ISyn" : "0"
+    "ISyn" : "10"
   },
   "t_end" : "0.2",
   "t_start" : "0",
