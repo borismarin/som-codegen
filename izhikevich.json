@@ -1,4 +1,31 @@
 {
+    "elements": [
+        {
+            "name": "izhikevich_burster",
+            "dynamics": {
+                "u": "a * (b * v - u)",
+                "v": "phi - u + I"
+            },
+            "parameters": {
+                "I": "0",
+                "a": "0.02",
+                "b": "0.2",
+                "c": "-50",
+                "d": "2",
+                "v0": "-70"
+            },
+            "state_functions": {
+                "phi": "0.04 * v**2 + 5*v + 140"
+            }
+        },
+        {
+            "name": "I_clamp",
+            "parameters": {
+                "I": "0"
+            }
+        }
+    ],
+
     "eco": [
         [
             [
@@ -19,62 +46,32 @@
         [
             [
                 {
-                    "effect": "post.I = pre.I",
-                    "name": "clamp"
+                    "name": "clamp",
+                    "effect": "post.I = pre.I"
                 }
             ],
             [
                 {
+                    "name": "start_inj",
                     "condition": "t - 30",
                     "direction": "+",
                     "effect": {
                         "I": "15"
-                    },
-                    "name": "start_inj"
+                    }
                 },
                 {
+                    "name": "end_inj",
                     "condition": "t - 150",
                     "direction": "+",
                     "effect": {
                         "I": "0"
-                    },
-                    "name": "end_inj"
+                    }
                 }
             ]
         ]
     ],
-    "elements": [
-        {
-            "name": "izhikevich_burster",
-            "dynamics": {
-                "u": "a * (b * v - u)",
-                "v": "phi - u + I"
-            },
-            "observables": {
-                "I": "0",
-                "a": "0.02",
-                "b": "0.2",
-                "c": "-50",
-                "d": "2",
-                "u": "b*v0",
-                "v": "v0",
-                "v0": "-70"
-            },
-            "state_functions": {
-                "phi": "0.04 * v**2 + 5*v + 140"
-            }
-        },
-        {
-            "name": "I_clamp",
-            "dynamics": {
-                "I": "0"
-            },
-            "observables": {
-                "I": "0"
-            }
-        }
-    ],
     "name": "Current clamped Izhikevich model",
     "t_end": "300",
-    "t_start": "0"
+    "t_start": "0",
+    "initial_conditions":{"izhikevich_burster": {"u": "b*v0", "v": "v0"}}
 }
