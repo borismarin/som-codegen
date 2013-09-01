@@ -20,6 +20,8 @@ m = m.replace('**', '.^')
 class kludgeDict(collections.OrderedDict):
     def keySet(self):
         return self.keys()
+    def size(self):
+        return len(self)
 
 
 model = json.JSONDecoder(object_pairs_hook=kludgeDict).decode(m)
