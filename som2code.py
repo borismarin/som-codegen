@@ -5,12 +5,10 @@ import collections
 import airspeed
 from py2expr import adapt_python_expression as p2e
 
-global LANG
-
-def json2py(somfile):
+def json2py(somfile, lang):
     with open(somfile) as f:
         m = f.read()
-    model = json.JSONDecoder(object_pairs_hook=javalikeHash).decode(m)
+        model = MyDecoder(language = lang).decode(m)
     return model
 
 def merge_with_template(model, templfile):
@@ -18,27 +16,42 @@ def merge_with_template(model, templfile):
         templ = airspeed.Template(f.read())
     return templ.merge(model)
 
-class javalikeHash(collections.OrderedDict):
-    def __init__(self, *args):
-        global LANG
-        adapted_args = ([(el[0], p2e(el[1], LANG))\
-                         if isinstance(el[1], basestring) and len(el[1]) > 1\
-                         else el \
-                         for el in args[0]],)
-        super(javalikeHash, self).__init__(*adapted_args)
+class MyDecoder(json.JSONDecoder):
 
-    def keySet(self):
-        return self.keys()
-    def size(self):
-        return len(self)
+
+    def __init__(self, language):
+        json.JSONDecoder.__init__(self, object_hook=self.dict_to_object)
+        self.language = language
+        
+    def dict_to_object(self, d):
+        dd = self.javalikeHash()
+        for k, v in d.iteritems():
+            #those are not supposed to contain math
+            if isinstance(v, basestring) and k not in ['comment', 'name', 'direction']:
+                dd[k] = p2e(v, self.language)
+            elif isinstance(v, list):
+                dd[k] = self.javalikeList(v)
+            else:
+                dd[k] = v
+        return dd        
+
+    class javalikeList(list):
+        def size(self):
+            return len(self)
+
+    class javalikeHash(collections.OrderedDict):
+        def keySet(self):
+            return self.keys()
+        def size(self):
+            return len(self)
+
+
 
 if __name__ == '__main__': 
     if 4 != len(sys.argv):
         print "USAGE:", sys.argv[0], "model_definition.json template.vm language"
         sys.exit(1)
-    global LANG
-    LANG = sys.argv[3]
-    m = json2py(sys.argv[1])
+    m = json2py(sys.argv[1], sys.argv[3])
     print merge_with_template(m, sys.argv[2])
 
 

@@ -40,6 +40,8 @@ class C(ast.NodeVisitor):
             right = self.visit(n.right)
         if isinstance(n.op, ast.FloorDiv):
             return r'floor(%s / %s)' % (self.visit(n.left), self.visit(n.right))
+        elif isinstance(n.op, ast.BitXor):
+            return r'pow(%s, %s)' % (self.visit(n.left), self.visit(n.right))
         elif isinstance(n.op, ast.Pow):
             return r'pow(%s, %s)' % (left, self.visit(n.right))
         elif isinstance(n.op, ast.Mod):
@@ -82,21 +84,6 @@ class C(ast.NodeVisitor):
 
     def prec_FloorDiv(self, n):
         return 400
-
-    def visit_LShift(self, n):
-        return '<<'
-
-    def visit_RShift(self, n):
-        return '>>'
-
-    def visit_BitOr(self, n):
-        return '|'
-
-    def visit_BitXor(self, n):
-        return '^'
-
-    def visit_BitAnd(self, n):
-        return '&'
 
     def visit_Invert(self, n):
         return '-'
@@ -176,6 +163,8 @@ class matlab(ast.NodeVisitor):
             right = self.visit(n.right)
         if isinstance(n.op, ast.FloorDiv):
             return r'floor(%s/%s)' % (self.visit(n.left), self.visit(n.right))
+        elif isinstance(n.op, ast.BitXor):
+            return r'%s .^ %s' % (self.visit(n.left), self.visit(n.right))
         elif isinstance(n.op, ast.Pow):
             return r'%s .^ %s' % (left, self.visit(n.right))
         if isinstance(n.op, ast.Mod):
@@ -346,21 +335,6 @@ class Latex(ast.NodeVisitor):
 
     def prec_FloorDiv(self, n):
         return 400
-
-    def visit_LShift(self, n):
-        return '\\operatorname{shiftLeft}'
-
-    def visit_RShift(self, n):
-        return '\\operatorname{shiftRight}'
-
-    def visit_BitOr(self, n):
-        return '\\operatorname{or}'
-
-    def visit_BitXor(self, n):
-        return '\\operatorname{xor}'
-
-    def visit_BitAnd(self, n):
-        return '\\operatorname{and}'
 
     def visit_Invert(self, n):
         return '\\operatorname{invert}'
