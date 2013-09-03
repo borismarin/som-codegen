@@ -18,4 +18,5 @@
      discussion @
      http://computation.llnl.gov/casc/sundials/support/notes.html#disc
      http://computation.llnl.gov/casc/sundials/support/faq.html#cvode_tols
+   - fixed dt and precise event location dilemma
      
