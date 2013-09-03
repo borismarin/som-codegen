@@ -18,12 +18,12 @@ def merge_with_template(model, templfile):
 
 class MyDecoder(json.JSONDecoder):
 
-
     def __init__(self, language):
-        json.JSONDecoder.__init__(self, object_hook=self.dict_to_object)
+        json.JSONDecoder.__init__(self, object_pairs_hook=self.dict_to_object)
         self.language = language
         
     def dict_to_object(self, d):
+        d = self.javalikeHash(d)
         dd = self.javalikeHash()
         for k, v in d.iteritems():
             #those are not supposed to contain math
@@ -33,7 +33,7 @@ class MyDecoder(json.JSONDecoder):
                 dd[k] = self.javalikeList(v)
             else:
                 dd[k] = v
-        return dd        
+        return dd
 
     class javalikeList(list):
         def size(self):
