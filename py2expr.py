@@ -1,9 +1,15 @@
-import ast
-import visitors as v
 
 def adapt_python_expression(expr, lang):
+    import ast
+    import visitors as v
+    import sys
 
-    pt = ast.parse(expr)
+    try:
+        pt = ast.parse(expr)
+    except SyntaxError:
+        print ("Problems parsing expressions in the .som file!\n"
+               "Please check conformance to python notation!")
+        sys.exit(1)
     try:
         visitor = getattr(v, lang)
         #print visitor
