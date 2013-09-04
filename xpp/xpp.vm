@@ -1,0 +1,41 @@
+#######################################################################
+## xppaut script automatically generated from a LEMS/SOM description ##
+## This is work in progress, expect substantial changes              ##
+#######################################################################
+########################################################################
+#macro (sign2num $s)#if ($s == "+")1#elseif($s == "-")-1#elseif($s == "0")0#else???#end#end##
+########################################################################
+#macro (unpackNames $hash)#foreach ($k in $hash.keySet())$indent$k = $hash.get($k);
+#end#end##
+########################################################################
+########################################################################
+
+#ODE definition
+#foreach ($dyn in $dynamics.keySet())##
+$dyn'=$dynamics.get($dyn)
+#end##
+
+#foreach ($s in $state.keySet())##
+init $s=$state.get($s)
+#end##
+
+#parameters
+#foreach ($p in $parameters.keySet())##
+par $p=$parameters.get($p)
+#end
+
+#state functions
+#foreach ($sf in $state_functions.keySet())##
+$sf=$state_functions.get($sf)
+#end
+
+#foreach ($ev in $events)##
+\# event: $ev.name
+global #sign2num($ev.direction) {$ev.condition} {#foreach($ef in $ev.effect.state.keySet())$ef=$ev.effect.state.get($ef);#end}
+#end
+
+@ total=$t_end, dt=$dt,maxstor=10000
+ 
+
+
+
