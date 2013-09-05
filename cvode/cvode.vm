@@ -194,13 +194,15 @@ int main(int narg, char **args)
 ## change pars 
 #if($ev.effect.parameters)##
 #unpackNames($ev.effect.parameters)##
-#names2array("p", $ev.effect.parameters)##
+#names2array("p", $parameters)##
 #end##
 	    }
 #end##foreach($ev in $events)
             
 
 	    /* Restart integration with event-corrected state */
+    	    flag = CVodeSetUserData(cvode_mem, p);
+    	    if (check_flag(&flag, "CVodeSetUserData", 1)) return(1);
 	    CVodeReInit(cvode_mem, t, state);
 	    PrintRootInfo(t, state, rootsfound);
 	}
