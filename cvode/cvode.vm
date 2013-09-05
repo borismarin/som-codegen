@@ -186,7 +186,8 @@ int main(int narg, char **args)
                 //$ev.name
 ## change state 
 #if($ev.effect.state)##
-#unpackNames($ev.effect.state)##
+#NV2names("state", $state)##
+##unpackNames($ev.effect.state)##
 #intoNV("state", $ev.effect.state)##
 
 #end##
