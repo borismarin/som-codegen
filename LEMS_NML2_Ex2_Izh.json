@@ -47,24 +47,24 @@
         {
             "name": "graph1: v and U timeseries",
             "ordinate_axis": {
-                "label": "U",
-                "max": "2",
-                "min": "-8"
+                "label": "",
+                "min": "-8",
+                "max": "2"
             },
 	    "abcissa_axis": {
                 "label": "time(ms)",
-                "max": "200*MSEC",
-                "min": "0*MSEC"
+                "min": "0",
+                "max": "0.2"
             },
             "curves": [
                 {
-                    "name": "v vs t",
+                    "name": "v timeseries",
                     "abcissa": "t",
                     "ordinate": "v",
                     "color": "0xff0000"
                 },
                 {
-                    "name": "U vs t",
+                    "name": "U timeseries",
                     "abcissa": "t",
                     "ordinate": "U",
                     "color": "0x0000ff"
@@ -75,17 +75,17 @@
             "name":"graph2: state space",
             "abcissa_axis": {
                 "label": "v(mV)",
-                "max": "200*MVOLT",
-                "min": "-90*MVOLT"
+                "min": "-0.08",
+                "max": "0.04"
             },
             "ordinate_axis": {
-                "label": "",
-                "min": "-90*MVOLT",
-                "max": "50*MVOLT"
+                "label": "U",
+                "min": "-8",
+                "max": "2"
             },
             "curves": [
                 {
-                    "name": "v vs U",
+                    "name": "(v, U) space",
                     "abcissa": "v",
                     "ordinate": "U",
                     "color": "0x222222"
