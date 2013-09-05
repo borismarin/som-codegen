@@ -27,7 +27,7 @@ class MyDecoder(json.JSONDecoder):
         dd = self.javalikeHash()
         for k, v in d.iteritems():
             #those are not supposed to contain math
-            if isinstance(v, basestring) and k not in ['comment', 'name', 'direction']:
+            if isinstance(v, basestring) and k not in ['comment', 'name', 'direction', 'label']:
                 dd[k] = p2e(v, self.language)
             elif isinstance(v, list):
                 dd[k] = self.javalikeList(v)
