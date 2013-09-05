@@ -33,17 +33,17 @@
         },
         {
             "name":"start_inj",
-            "condition":"t - 30",
+            "condition":"t - 30.0001",
             "direction":"+",
             "effect":{
                 "parameters":{
-                    "I":"15"
+                    "I":"5"
                 }
             }
         },
         {
             "name":"end_inj",
-            "condition":"t - 150",
+            "condition":"t - 150.0001",
             "direction":"+",
             "effect":{
                 "parameters":{
