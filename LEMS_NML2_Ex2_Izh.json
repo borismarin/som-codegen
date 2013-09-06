@@ -40,9 +40,10 @@
     "t_end": "0.2",
 
     "timeseries": [
-        "v",
+	"v",
         "U"
     ],
+    "dump_to_file": "izhikevich_sim.dat",
     "display": [
         {
             "name": "graph1: v and U timeseries",
@@ -61,13 +62,13 @@
                     "name": "v timeseries",
                     "abcissa": "t",
                     "ordinate": "v",
-                    "color": "0xff0000"
+                    "colour": "0xff0000"
                 },
                 {
                     "name": "U timeseries",
                     "abcissa": "t",
                     "ordinate": "U",
-                    "color": "0x0000ff"
+                    "colour": "0x0000ff"
                 }
             ]
         },
@@ -88,7 +89,7 @@
                     "name": "(v, U) space",
                     "abcissa": "v",
                     "ordinate": "U",
-                    "color": "0x222222"
+                    "colour": "0x222222"
                 }
             ]
         }
