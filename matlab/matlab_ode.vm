@@ -201,10 +201,12 @@ function generate_plots(X)
 end
 
 #############################################################
+#if($dump_to_file)
 function dump_output(X)
     disp(['Dumping timeseries to file ', '$dump_to_file'])
     save('$dump_to_file', 'X', '-ascii');
 end
+#end
 
 #############################################################
 #######################
@@ -212,5 +214,5 @@ end
 #######################
 function c = hex2rgb(hexstring)
     f = @(i) hex2dec(hexstring(i:i+1))/255;
-    c = arrayfun(f, 3:2:7);
+    c = arrayfun(f, 2:2:6);
 end
