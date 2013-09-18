@@ -164,12 +164,12 @@ int main(int narg, char **args)
     realtype Y2 = init_Y2;
     realtype Z1 = init_Z1;
     realtype Z2 = init_Z2;
-    NV_Ith_S(state, 0) = init_X1;
-    NV_Ith_S(state, 1) = init_X2;
-    NV_Ith_S(state, 2) = init_V1;
+    NV_Ith_S(state, 0) = init_Y2;
+    NV_Ith_S(state, 1) = init_V1;
+    NV_Ith_S(state, 2) = init_Y1;
     NV_Ith_S(state, 3) = init_V2;
-    NV_Ith_S(state, 4) = init_Y1;
-    NV_Ith_S(state, 5) = init_Y2;
+    NV_Ith_S(state, 4) = init_X2;
+    NV_Ith_S(state, 5) = init_X1;
     NV_Ith_S(state, 6) = init_Z1;
     NV_Ith_S(state, 7) = init_Z2;
 
@@ -204,7 +204,8 @@ int main(int narg, char **args)
 
     printf(" \n Integrating Locke2008_Circadian_Clock_0 \n\n");
     printf("#t Y2, V1, Y1, V2, X2, X1, Z1, Z2, \n");
-
+    PrintOutput(t, state);
+   
     tout = DT;
     while(1) {
         flag = CVode(cvode_mem, tout, state, &t, CV_NORMAL);

@@ -24,6 +24,9 @@
 #macro (intoNV $name $map)#foreach ($k in $map.keySet())#set($i = $velocityCount-1)${prefix}NV_Ith_S(${name}, $i) = $map.get($k);
 #end#end##
 ########################################################################
+#macro (intoNV_dynsort $name $map)#foreach ($k in $dynamics.keySet())#set($i = $velocityCount-1)${prefix}NV_Ith_S(${name}, $i) = $map.get($k);
+#end#end##
+########################################################################
 #macro (names2array $array $map)#foreach ($k in $map.keySet())#set($i = $velocityCount-1)${prefix}${array}[$i] = $k;
 #end#end##
 ########################################################################
@@ -135,7 +138,7 @@ int main(int narg, char **args)
     realtype p[] = {#rollK($parameters)};
 
 #unpackNames($state)##
-#intoNV("state", $state)##
+#intoNV_dynsort("state", $state)##
 
     reltol = RTOL;
 #foreach($x in $dynamics)##
@@ -171,7 +174,8 @@ int main(int narg, char **args)
 
     printf(" \n Integrating $name \n\n");
     printf("#t #rollK($dynamics)\n");
-
+    PrintOutput(t, state);
+   
     tout = DT;
     while(1) {
         flag = CVode(cvode_mem, tout, state, &t, CV_NORMAL);
@@ -181,7 +185,7 @@ int main(int narg, char **args)
             /* Event detected */
             flagr = CVodeGetRootInfo(cvode_mem, rootsfound);
             if (check_flag(&flagr, "CVodeGetRootInfo", 1)) return(1);
-	       PrintRootInfo(t, state, rootsfound);
+            PrintRootInfo(t, state, rootsfound);
           
 #set($prefix = $idt4)##
 #set($Declare_float ="")##
@@ -193,7 +197,7 @@ int main(int narg, char **args)
 #if($ev.effect.state)##
 #NV2names_dynsort("state", $state)##
 ##unpackNames($ev.effect.state)##
-#intoNV("state", $ev.effect.state)##
+#intoNV_dynsort("state", $ev.effect.state)##
 
 #end##
 ## change pars 
