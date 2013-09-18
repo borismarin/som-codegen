@@ -34,3 +34,7 @@ nosetests.xml
 .project
 .pydevproject
 .ropeproject
+
+
+#vim autosaves
+*~
