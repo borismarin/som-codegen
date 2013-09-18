@@ -1,6 +1,6 @@
 import ast
 
-class C(ast.NodeVisitor):
+class C(ast.NodeTransformer):
 
     def prec(self, n):
         return getattr(self, 'prec_'+n.__class__.__name__, getattr(self, 'generic_prec'))(n)
@@ -39,8 +39,6 @@ class C(ast.NodeVisitor):
             right = self.visit(n.right)
         if isinstance(n.op, ast.FloorDiv):
             return r'floor(%s / %s)' % (self.visit(n.left), self.visit(n.right))
-        elif isinstance(n.op, ast.BitXor):
-            return r'pow(%s, %s)' % (self.visit(n.left), self.visit(n.right))
         elif isinstance(n.op, ast.Pow):
             return r'pow(%s, %s)' % (self.visit(n.left), self.visit(n.right))
         elif isinstance(n.op, ast.Mod):
@@ -73,6 +71,9 @@ class C(ast.NodeVisitor):
         return 500
 
     def prec_Pow(self, n):
+        return 700
+
+    def prec_BitXor(self, n):
         return 700
 
     def visit_Div(self, n):
