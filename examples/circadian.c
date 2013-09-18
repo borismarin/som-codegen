@@ -80,7 +80,7 @@ static int dstate_dt(realtype t, N_Vector state, N_Vector dstate,  void *p){
     realtype rate__R4 = compartment * L;
     realtype rate__R5 = compartment * k3 * X1 / compartment;
     realtype rate__R2 = compartment * v_2 * X1 / compartment / (K2 + X1 / compartment);
-    realtype rate__R1 = compartment * v_1 * (pow(K1, n)) / ((pow(K1, n)) + (pow(Z1 / compartment, n)));
+    realtype rate__R1 = compartment * v_1 * pow(K1, n) / (pow(K1, n) + pow(Z1 / compartment, n));
     realtype F = 1.0 / 2.0 * (V1 + V2);
     realtype rate__R3 = compartment * vc * K * F / (Kc + K * F);
     realtype rate__R8 = compartment * v_6 * Z1 / compartment / (K6 + Z1 / compartment);
@@ -90,7 +90,7 @@ static int dstate_dt(realtype t, N_Vector state, N_Vector dstate,  void *p){
     realtype rate__R16 = compartment * v_4 * Y2 / compartment / (K4 + Y2 / compartment);
     realtype rate__R17 = compartment * k5 * Y2 / compartment;
     realtype rate__R10 = compartment * v_8 * V1 / compartment / (K8 + V1 / compartment);
-    realtype rate__R11 = compartment * v_1 * (pow(K1, n)) / ((pow(K1, n)) + (pow(Z2 / compartment, n)));
+    realtype rate__R11 = compartment * v_1 * pow(K1, n) / (pow(K1, n) + pow(Z2 / compartment, n));
     realtype rate__R12 = compartment * v_2 * X2 / compartment / (K2 + X2 / compartment);
     realtype rate__R13 = compartment * vc * K * F / (Kc + K * F);
     realtype rate__R20 = compartment * v_8 * V2 / compartment / (K8 + V2 / compartment);
