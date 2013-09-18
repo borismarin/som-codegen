@@ -420,11 +420,7 @@ class xpp(ast.NodeVisitor):
             right = self.visit(n.right)
         if isinstance(n.op, ast.FloorDiv):
             return r'flr(%s/%s)' % (self.visit(n.left), self.visit(n.right))
-        elif isinstance(n.op, ast.BitXor):
-            return r'%s ^ %s' % (self.visit(n.left), self.visit(n.right))
-        elif isinstance(n.op, ast.Pow):
-            return r'%s ^ %s' % (left, self.visit(n.right))
-        if isinstance(n.op, ast.Mod):
+        elif isinstance(n.op, ast.Mod):
             return r'mod(%s,%s)' % (self.visit(n.left), self.visit(n.right))
         else:
             return r'%s %s %s' % (left, self.visit(n.op), right)
@@ -456,7 +452,16 @@ class xpp(ast.NodeVisitor):
     def prec_Mod(self, n):
         return 500
 
+    def visit_Pow(self, n):
+        return '^'
+
     def prec_Pow(self, n):
+        return 700
+
+    def visit_BitXor(self, n):
+        return '^'
+
+    def prec_BitXor(self, n):
         return 700
 
     def visit_Div(self, n):
