@@ -8,6 +8,7 @@ from py2expr import adapt_python_expression as p2e
 def json2py(somfile, lang):
     with open(somfile) as f:
         m = f.read()
+        m = m.replace('^', '**') 
         model = MyDecoder(language = lang).decode(m)
     return model
 
