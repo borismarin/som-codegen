@@ -1,6 +1,5 @@
 import ast
 
-
 class C(ast.NodeVisitor):
 
     def prec(self, n):
@@ -43,7 +42,7 @@ class C(ast.NodeVisitor):
         elif isinstance(n.op, ast.BitXor):
             return r'pow(%s, %s)' % (self.visit(n.left), self.visit(n.right))
         elif isinstance(n.op, ast.Pow):
-            return r'pow(%s, %s)' % (left, self.visit(n.right))
+            return r'pow(%s, %s)' % (self.visit(n.left), self.visit(n.right))
         elif isinstance(n.op, ast.Mod):
             return r'fmod(%s, %s)' % (left, self.visit(n.right))
         else:
@@ -163,11 +162,7 @@ class matlab(ast.NodeVisitor):
             right = self.visit(n.right)
         if isinstance(n.op, ast.FloorDiv):
             return r'floor(%s/%s)' % (self.visit(n.left), self.visit(n.right))
-        elif isinstance(n.op, ast.BitXor):
-            return r'%s .^ %s' % (self.visit(n.left), self.visit(n.right))
-        elif isinstance(n.op, ast.Pow):
-            return r'%s .^ %s' % (left, self.visit(n.right))
-        if isinstance(n.op, ast.Mod):
+        elif isinstance(n.op, ast.Mod):
             return r'mod(%s,%s)' % (self.visit(n.left), self.visit(n.right))
         else:
             return r'%s %s %s' % (left, self.visit(n.op), right)
@@ -199,7 +194,16 @@ class matlab(ast.NodeVisitor):
     def prec_Mod(self, n):
         return 500
 
+    def visit_Pow(self, n):
+        return '.^'
+
     def prec_Pow(self, n):
+        return 700
+
+    def visit_BitXor(self, n):
+        return '.^'
+
+    def prec_BitXor(self, n):
         return 700
 
     def visit_Div(self, n):
@@ -234,6 +238,7 @@ class matlab(ast.NodeVisitor):
 
     def prec_USub(self, n):
         return 800
+
     def visit_Num(self, n):
         return str(n.n)
 
