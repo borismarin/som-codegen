@@ -21,9 +21,6 @@ function integrate_${name}()
     %Integrate the $name model using Euler's method.
 
     %parameter list for your convenience
-###foreach ($par in $parameters.keySet())##
-##    $par = $parameters.get($par);
-###end
 #set ($indent = $idt1)##
 #unpackNames($parameters)##
 
@@ -38,7 +35,7 @@ function integrate_${name}()
     dt = $dt;
     
     T = $t_start:dt:$t_end;
-    timeseries = zeros(length(T), length([#rollK($state)]));
+    timeseries = zeros(length(T), $dynamics.size());
     timeseries(1, :) = [#rollK($state)];
 
     for i = 1:length(T) - 1
