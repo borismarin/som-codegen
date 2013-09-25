@@ -1,0 +1,59 @@
+Parsing and resolving model
+Building simulation
+Exporting as: dLEMS (distilled LEMS in JSON format, see https://github.com/borismarin/som-codegen)
+{
+    "name": "hr_chaotic",
+    "parameters": {
+        "a": "1.0",
+        "c": "1.0",
+        "b": "2.8",
+        "d": "5.0",
+        "I": "3.94",
+        "s": "4.0",
+        "r": "0.01",
+        "y0": "-1.0",
+        "x0": "-1.6",
+        "x1": "-1.6",
+        "z0": "1.0",
+        "SEC": "1.0"
+    },
+    "state_functions": {
+        "Q": "c - d * x^2 - y",
+        "P": "y - a * x^3 + b * x^2 + I",
+        "R": "s * ( x - x1 ) - z"
+    },
+    "dynamics": {
+        "y": "Q / SEC",
+        "x": "(P - z) / SEC",
+        "z": "r * R / SEC"
+    },
+    "state": {
+        "y": "y0",
+        "x": "x0",
+        "z": "z0"
+    },
+    "events": [],
+    "t_start": "0",
+    "t_end": "2000.0",
+    "dt": "0.001",
+    "display": [
+        {
+            "abcissa_axis": {
+                "max": "2100.0",
+                "min": "-100.0"
+            },
+            "ordinate_axis": {
+                "max": "2.0",
+                "min": "-2.0"
+            },
+            "curves": [
+                {
+                    "abcissa": "t",
+                    "ordinate": "x",
+                    "colour": "#000000"
+                }
+            ]
+        }
+    ]
+}
+Written to ../HindmarshRose1984/NeuroML2/Run_Chaotic_HindmarshRose.json
