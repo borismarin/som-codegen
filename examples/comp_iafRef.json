@@ -1,0 +1,59 @@
+{
+    "name": "iafRef",
+    "parameters": {
+        "reset": "-0.07",
+        "C": "3.2e-12",
+        "refract": "0.005",
+        "leakReversal": "-0.053",
+        "thresh": "-0.055",
+        "leakConductance": "2e-10"
+    },
+    "state_functions": {
+        "iSyn": "0",
+        "iMemb": "leakConductance * (leakReversal - v) + iSyn"
+    },
+    "dynamics": {},
+    "state": {
+        "lastSpikeTime": "0",
+        "v": "reset"
+    },
+    "events": [],
+    "t_start": "0",
+    "t_end": "0.3",
+    "dt": "1e-05",
+    "dump_to_file": "results/iaf_v.dat",
+    "display": [
+        {
+            "abcissa_axis": {
+                "max": "0.3",
+                "min": "0.0"
+            },
+            "ordinate_axis": {
+                "max": "-0.05",
+                "min": "-0.075"
+            },
+            "curves": [
+                {
+                    "abcissa": "t",
+                    "ordinate": "v",
+                    "colour": "#FF0000"
+                },
+                {
+                    "abcissa": "t",
+                    "ordinate": "v",
+                    "colour": "#D7DF01"
+                },
+                {
+                    "abcissa": "t",
+                    "ordinate": "v",
+                    "colour": "#01DF3A"
+                },
+                {
+                    "abcissa": "t",
+                    "ordinate": "v",
+                    "colour": "#0174DF"
+                }
+            ]
+        }
+    ]
+}

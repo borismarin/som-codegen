@@ -1,0 +1,41 @@
+{
+    "name": "izClass1",
+    "parameters": {
+        "a": "0.02",
+        "c": "-55.0",
+        "b": "-0.1",
+        "d": "6.0",
+        "v0": "-0.06",
+        "thresh": "0.03",
+        "MVOLT": "0.001",
+        "MSEC": "0.001"
+    },
+    "state_functions": {
+        "ISyn": "0"
+    },
+    "dynamics": {
+        "U": "a * (b * v / MVOLT - U) / MSEC",
+        "v": "(0.04 * v^2 / MVOLT + 5 * v + (140.0 - U + ISyn) * MVOLT)/MSEC"
+    },
+    "state": {
+        "U": "v0 * b / MVOLT",
+        "v": "v0"
+    },
+    "events": [
+        {
+            "name": "condition_0",
+            "condition": "v - (thresh)",
+            "direction": "+",
+            "effect": {
+                "state": {
+                    "v": "c * MVOLT",
+                    "U": "U + d"
+                }
+            }
+        }
+    ],
+    "t_start": "0",
+    "t_end": "0.2",
+    "dt": "5e-06",
+    "display": []
+}
