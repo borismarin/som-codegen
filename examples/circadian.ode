@@ -71,7 +71,7 @@ rate__R19=compartment * k7 * X2 / compartment
 
 
 #integration settings
-@ total=50.0, dt=0.005, maxstor=100000
+@ total=50.0, dt=0.005, maxstor=5000000
 
 #plot settings
 @ nplot=8

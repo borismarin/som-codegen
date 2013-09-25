@@ -18,7 +18,7 @@ par SEC=1.0
 
 
 #integration settings
-@ total=200.0, dt=0.05, maxstor=100000
+@ total=200.0, dt=0.05, maxstor=5000000
 
 #plot settings
 @ nplot=2

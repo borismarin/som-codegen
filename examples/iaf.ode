@@ -24,7 +24,7 @@ global 1 {v - thresh} {v=reset}
 
 
 #integration settings
-@ total=0.3, dt=1e-05, maxstor=100000
+@ total=0.3, dt=1e-05, maxstor=5000000
 
 #plot settings
 @ nplot=4

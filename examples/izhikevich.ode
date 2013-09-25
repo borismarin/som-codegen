@@ -29,7 +29,7 @@ global 1 {t - 150.0001} {I=0}
 
 
 #integration settings
-@ total=300, dt=0.01, maxstor=100000
+@ total=300, dt=0.01, maxstor=5000000
 
 #plot settings
 

@@ -27,7 +27,7 @@ global 1 {v - thresh} {v=c * MVOLT; U=U + d}
 
 
 #integration settings
-@ total=0.2, dt=5e-06, maxstor=100000
+@ total=0.2, dt=5e-06, maxstor=5000000
 
 #plot settings
 
