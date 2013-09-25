@@ -1,0 +1,37 @@
+
+#ODE definition
+v'=phi - u + I
+u'=a * (b * v - u)
+
+#initial conditions
+global 0 t {v=v0; u=b * v0}
+
+#parameters
+par a=0.02
+par b=0.2
+par c=-50
+par d=2
+par I=0
+par v0=-70
+
+#state functions
+phi=0.04 * v ^ 2 + 5 * v + 140
+
+#event handling
+# event: spike
+global 1 {v - 30} {v=c; u=u + d}
+# event: start_inj
+global 1 {t - 30.0001} {I=5}
+# event: end_inj
+global 1 {t - 150.0001} {I=0}
+
+
+
+
+#integration settings
+@ total=300, dt=0.01, maxstor=100000
+
+#plot settings
+
+
+

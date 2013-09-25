@@ -158,7 +158,7 @@ function generate_plots(X)
     figure(1);
     hold on;
     % uncomment below to bypass autoscaling
-    %axis([0.0, 50.0, 1.0, 0.0])
+    %axis([0.0, 50.0, 0.0, 1.0])
     plot(t, X1, 'Color', hex2rgb('#000000'))
     plot(t, Y1, 'Color', hex2rgb('#ff0000'))
     plot(t, Z1, 'Color', hex2rgb('#00ff00'))

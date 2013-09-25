@@ -1,0 +1,45 @@
+{
+    "name": "fn1",
+    "parameters": {
+        "I": "0.8",
+        "SEC": "1.0"
+    },
+    "state_functions": {},
+    "dynamics": {
+        "W": "(0.08 * (V + 0.7 - 0.8 * W)) / SEC",
+        "V": "( (V - ((V^3) / 3)) - W + I) / SEC"
+    },
+    "state": {
+        "W": "0",
+        "V": "0"
+    },
+    "events": [],
+    "t_start": "0",
+    "t_end": "200.0",
+    "dt": "0.05",
+    "dump_to_file": "results/fn.dat",
+    "display": [
+        {
+            "abcissa_axis": {
+                "max": "200.0",
+                "min": "0.0"
+            },
+            "ordinate_axis": {
+                "max": "2.5",
+                "min": "-2.5"
+            },
+            "curves": [
+                {
+                    "abcissa": "t",
+                    "ordinate": "V",
+                    "colour": "#ee40FF"
+                },
+                {
+                    "abcissa": "t",
+                    "ordinate": "W",
+                    "colour": "#BBA0AA"
+                }
+            ]
+        }
+    ]
+}

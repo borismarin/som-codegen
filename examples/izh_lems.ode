@@ -1,0 +1,35 @@
+
+#ODE definition
+U'=a * (b * v / MVOLT - U) / MSEC
+v'=(0.04 * v ^ 2 / MVOLT + 5 * v + (140.0 - U + ISyn) * MVOLT) / MSEC
+
+#initial conditions
+global 0 t {U=v0 * b / MVOLT; v=v0}
+
+#parameters
+par a=0.02
+par c=-55.0
+par b=-0.1
+par d=6.0
+par v0=-0.06
+par thresh=0.03
+par MVOLT=0.001
+par MSEC=0.001
+
+#state functions
+ISyn=0
+
+#event handling
+# event: condition_0
+global 1 {v - thresh} {v=c * MVOLT; U=U + d}
+
+
+
+
+#integration settings
+@ total=0.2, dt=5e-06, maxstor=100000
+
+#plot settings
+
+
+

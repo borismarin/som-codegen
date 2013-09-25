@@ -38,32 +38,32 @@ par init_Z2=0.0
 par init_V1=2.5
 par init_V2=0.0
 par init_X2=0.0
-par comp=1.0
+par compartment=1.0
 par init_Y1=3.25
 par init_Y2=0.0
 
 #state functions
-rate__R6=comp * v_4 * Y1 / comp / (K4 + Y1 / comp)
-rate__R7=comp * k5 * Y1 / comp
-rate__R4=comp * L
-rate__R5=comp * k3 * X1 / comp
-rate__R2=comp * v_2 * X1 / comp / (K2 + X1 / comp)
-rate__R1=comp * v_1 * K1 ^ n / (K1 ^ n + (Z1 / comp) ^ n)
+rate__R6=compartment * v_4 * Y1 / compartment / (K4 + Y1 / compartment)
+rate__R7=compartment * k5 * Y1 / compartment
+rate__R4=compartment * L
+rate__R5=compartment * k3 * X1 / compartment
+rate__R2=compartment * v_2 * X1 / compartment / (K2 + X1 / compartment)
+rate__R1=compartment * v_1 * K1 ^ n / (K1 ^ n + (Z1 / compartment) ^ n)
 F=1.0 / 2.0 * (V1 + V2)
-rate__R3=comp * vc * K * F / (Kc + K * F)
-rate__R8=comp * v_6 * Z1 / comp / (K6 + Z1 / comp)
-rate__R9=comp * k7 * X1 / comp
-rate__R14=comp * L
-rate__R15=comp * k3 * X2 / comp
-rate__R16=comp * v_4 * Y2 / comp / (K4 + Y2 / comp)
-rate__R17=comp * k5 * Y2 / comp
-rate__R10=comp * v_8 * V1 / comp / (K8 + V1 / comp)
-rate__R11=comp * v_1 * K1 ^ n / (K1 ^ n + (Z2 / comp) ^ n)
-rate__R12=comp * v_2 * X2 / comp / (K2 + X2 / comp)
-rate__R13=comp * vc * K * F / (Kc + K * F)
-rate__R20=comp * v_8 * V2 / comp / (K8 + V2 / comp)
-rate__R18=comp * v_6 * Z2 / comp / (K6 + Z2 / comp)
-rate__R19=comp * k7 * X2 / comp
+rate__R3=compartment * vc * K * F / (Kc + K * F)
+rate__R8=compartment * v_6 * Z1 / compartment / (K6 + Z1 / compartment)
+rate__R9=compartment * k7 * X1 / compartment
+rate__R14=compartment * L
+rate__R15=compartment * k3 * X2 / compartment
+rate__R16=compartment * v_4 * Y2 / compartment / (K4 + Y2 / compartment)
+rate__R17=compartment * k5 * Y2 / compartment
+rate__R10=compartment * v_8 * V1 / compartment / (K8 + V1 / compartment)
+rate__R11=compartment * v_1 * K1 ^ n / (K1 ^ n + (Z2 / compartment) ^ n)
+rate__R12=compartment * v_2 * X2 / compartment / (K2 + X2 / compartment)
+rate__R13=compartment * vc * K * F / (Kc + K * F)
+rate__R20=compartment * v_8 * V2 / compartment / (K8 + V2 / compartment)
+rate__R18=compartment * v_6 * Z2 / compartment / (K6 + Z2 / compartment)
+rate__R19=compartment * k7 * X2 / compartment
 
 #event handling
 
@@ -75,7 +75,7 @@ rate__R19=comp * k7 * X2 / comp
 
 #plot settings
 @ nplot=8
-@ xlo=0.0 xhi=50.0, ylo=1.0, yhi=0.0
+@ xlo=0.0 xhi=50.0, ylo=0.0, yhi=1.0
 @ xp1=t, yp1=X1
 @ xp2=t, yp2=Y1
 @ xp3=t, yp3=Z1
