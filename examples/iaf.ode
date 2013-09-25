@@ -1,0 +1,38 @@
+
+#ODE definition
+v'=iMemb / C
+
+#initial conditions
+global 0 t {v=reset}
+
+#parameters
+par reset=-0.07
+par C=3.2e-12
+par thresh=-0.055
+par leakConductance=2e-10
+par leakReversal=-0.053
+
+#state functions
+iSyn=0
+iMemb=leakConductance * (leakReversal - v) + iSyn
+
+#event handling
+# event: condition_0
+global 1 {v - thresh} {v=reset}
+
+
+
+
+#integration settings
+@ total=0.3, dt=1e-05, maxstor=100000
+
+#plot settings
+@ nplot=4
+@ xlo=0.0 xhi=0.3, ylo=-0.075, yhi=-0.05
+@ xp1=t, yp1=v
+@ xp2=t, yp2=v
+@ xp3=t, yp3=v
+@ xp4=t, yp4=v
+
+
+
