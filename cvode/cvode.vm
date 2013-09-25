@@ -53,7 +53,7 @@
 
 /* Problem Constants */
 \#define NEQ   $dynamics.size() /* number of equations */
-#if($events)##
+#if($events.size() > 0)##
 \#define NRF   $events.size() /* number of rootfinding functions */
 #end
 \#define RTOL  RCONST(1.0e-4)   /* scalar relative tolerance */
@@ -70,7 +70,7 @@ static void PrintRootInfo(realtype t, N_Vector y, int *rootsfound);
 static void PrintFinalStats(void *cvode_mem);
 static int check_flag(void *flagvalue, char *funcname, int opt);
 static int dstate_dt(realtype t, N_Vector state, N_Vector dstate, void *params);
-#if($events)
+#if($events.size() > 0)
 static int root_functions(realtype t, N_Vector state, realtype *gout, void *params);
 #end##
 
@@ -92,7 +92,7 @@ static int dstate_dt(realtype t, N_Vector state, N_Vector dstate,  void *p){
     return(0);
 }
 
-#if($events)##
+#if($events.size() > 0)##
 static int root_functions(realtype t, N_Vector state, realtype *gout, void *p)
 {
 
@@ -121,7 +121,7 @@ int main(int narg, char **args)
     N_Vector state, abstol;
     void *cvode_mem;
     int flag, flagr;
-#if($events)##
+#if($events.size() > 0)##
     int rootsfound[NRF];
     int rootdir[] = {#foreach($e in $events)#sign2num($e.direction),#end};
 #end
@@ -159,7 +159,7 @@ int main(int narg, char **args)
     flag = CVodeSVtolerances(cvode_mem, reltol, abstol);
     if (check_flag(&flag, "CVodeSVtolerances", 1)) return(1);
    
-    #if($events)##
+    #if($events.size() > 0)##
     flag = CVodeRootInit(cvode_mem, NRF, root_functions);
     if (check_flag(&flag, "CVodeRootInit", 1)) return(1);
 
@@ -180,7 +180,7 @@ int main(int narg, char **args)
     while(1) {
         flag = CVode(cvode_mem, tout, state, &t, CV_NORMAL);
         
-#if($events)##
+#if($events.size() > 0)##
         if(flag == CV_ROOT_RETURN) {
             /* Event detected */
             flagr = CVodeGetRootInfo(cvode_mem, rootsfound);
@@ -252,7 +252,7 @@ static void PrintOutput(realtype t, N_Vector state)
     return;
 }
 
-#if($events)
+#if($events.size() > 0)
 static void PrintRootInfo(realtype t, N_Vector state, int *rootfound)
 {
     unsigned int i = 0;
