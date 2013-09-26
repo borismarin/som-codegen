@@ -1,13 +1,17 @@
 som-codegen
 ===========
 
-Testing possible S.implified O.DE M.odels, used to generate code for numerical integrators from LEMS models.
+Testing possibilities for the _Distilled Lems_ (dlems) format, used to
+generate code for numerical integrators from Lems models. Currently,
+only isolated Lems components (no populations or networks) are
+supported; check the _eco-som_ branch for a tentive multi-component
+format.
 
 
 Tentative specification
 -----------------------
 
-example:
+Example illustrating supported constructs:
 ```json
 {
     "name":"izhikevich_burster",
