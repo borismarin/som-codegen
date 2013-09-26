@@ -129,9 +129,9 @@ Example illustrating supported constructs:
             dynamical variables, state functions, parameters or time
         * _direction_: "+", "-" or "0" if the condition is met where
             f(x,s,p,t) is increasing, decreasing or both.
-        * _effect_: object containing at least one of _state_,
-            _parameter_ or _dynamics_ field, defining attributions
-            for when _condition_ is met.
+        * _effect_: object containing at least one of _state_ or
+            _parameter_ field, defining attributions for when
+            _condition_ is met.
     
     * _t_start_:
 
