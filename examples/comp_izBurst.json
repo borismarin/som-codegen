@@ -39,7 +39,7 @@
     "dt": "5e-06",
     "display": [
         {
-            "abcissa_axis": {
+            "abscissa_axis": {
                 "max": "0.2",
                 "min": "0.0"
             },
@@ -49,12 +49,12 @@
             },
             "curves": [
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "v",
                     "colour": "#ee40FF"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "U",
                     "colour": "#BBA0AA"
                 }

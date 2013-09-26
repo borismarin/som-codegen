@@ -1,0 +1,43 @@
+
+#ODE definition
+y'=Q / SEC
+x'=(P - z) / SEC
+z'=r * R / SEC
+
+#initial conditions
+global 0 t {y=y0; x=x0; z=z0}
+
+#parameters
+par a=1.0
+par c=1.0
+par b=2.8
+par d=5.0
+par I=3.94
+par s=4.0
+par r=0.01
+par y0=-1.0
+par x0=-1.6
+par x1=-1.6
+par z0=1.0
+par SEC=1.0
+
+#state functions
+Q=c - d * x ^ 2 - y
+P=y - a * x ^ 3 + b * x ^ 2 + I
+R=s * (x - x1) - z
+
+#event handling
+
+
+
+
+#integration settings
+@ total=2000.0, dt=0.001, maxstor=5000000
+
+#plot settings
+@ nplot=1
+@ xlo=-100.0 xhi=2100.0, ylo=-2.0, yhi=2.0
+@ xp1=t, yp1=x
+
+
+

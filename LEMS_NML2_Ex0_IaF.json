@@ -35,7 +35,7 @@
     "dump_to_file": "results/iaf_v.dat",
     "display": [
         {
-            "abcissa_axis": {
+            "abscissa_axis": {
                 "max": "0.3",
                 "min": "0.0"
             },
@@ -45,22 +45,22 @@
             },
             "curves": [
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "v",
                     "colour": "#FF0000"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "v",
                     "colour": "#D7DF01"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "v",
                     "colour": "#01DF3A"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "v",
                     "colour": "#0174DF"
                 }

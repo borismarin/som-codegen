@@ -32,6 +32,10 @@ global 1 {t - 150.0001} {I=0}
 @ total=300, dt=0.01, maxstor=5000000
 
 #plot settings
+@ nplot=2
+@ xlo=-16.0 xhi=-2.0, ylo=-90.0, yhi=50.0
+@ xp1=t, yp1=v
+@ xp2=t, yp2=u
 
 
 

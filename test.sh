@@ -21,6 +21,8 @@ generateFiles 'comp_Locke2008_Circadian_Clock_0.json'  'circadian'
 generateFiles 'LEMS_NML2_Ex9_FN.json' 'fn'
 generateFiles 'LEMS_NML2_Ex0_IaF.json' 'iaf'
 generateFiles 'LEMS_NML2_Ex2_Izh.json' 'izh_lems'
+generateFiles 'Run_Regular_HindmarshRose.json' 'hr_reg'
+generateFiles 'Run_Chaotic_HindmarshRose.json' 'hr_chaos'
 
 
 

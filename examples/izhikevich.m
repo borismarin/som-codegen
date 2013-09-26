@@ -6,6 +6,7 @@ function izhikevich_burster()
 
     X_ = integrate();
 
+    generate_plots(X_)
 
 
 end
@@ -94,7 +95,7 @@ end
 function [value,isterminal,direction] = events(t, state, pars)
     value = [1,1,1,];
     isterminal = [1,1,1,];
-    direction = [1,1,1,];
+    direction = [1,0,0,];
    
     v = state(1);
     u = state(2);
@@ -113,10 +114,10 @@ function [value,isterminal,direction] = events(t, state, pars)
     value(1) = v - 30;
 
     % start_inj
-    value(2) = t - 30.0001;
+    value(2) = t - 30;
 
     % end_inj
-    value(3) = t - 150.0001;
+    value(3) = t - 150;
 
 end
 
@@ -148,6 +149,13 @@ function generate_plots(X)
     t = X(:, 1);
     v = X(:, 2);
     u = X(:, 3);
+
+    figure(1);
+    hold on;
+    % uncomment below to bypass autoscaling
+    %axis([-16.0, -2.0, -90.0, 50.0])
+    plot(t, v, 'Color', hex2rgb('#ee40FF'))
+    plot(t, u, 'Color', hex2rgb('#BBA0AA'))
 
 end
 

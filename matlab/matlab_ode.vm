@@ -201,9 +201,9 @@ function generate_plots(X)
     figure($velocityCount);
     hold on;
     % uncomment below to bypass autoscaling
-    %axis([$d.abcissa_axis.min, $d.abcissa_axis.max, $d.ordinate_axis.min, $d.ordinate_axis.max])
+    %axis([$d.abscissa_axis.min, $d.abscissa_axis.max, $d.ordinate_axis.min, $d.ordinate_axis.max])
 #foreach ($c in $d.curves)##
-    plot($c.abcissa, $c.ordinate, 'Color', hex2rgb('$c.colour'))
+    plot($c.abscissa, $c.ordinate, 'Color', hex2rgb('$c.colour'))
 #end##foreach($c in $d.curves)##
 
 #end##foreach($d in $display)##

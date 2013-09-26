@@ -80,7 +80,7 @@
     "dump_to_file": "Locke2008_Circadian_Clock.dat",
     "display": [
         {
-            "abcissa_axis": {
+            "abscissa_axis": {
                 "max": "50.0",
                 "min": "0.0"
             },
@@ -90,42 +90,42 @@
             },
             "curves": [
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "X1",
                     "colour": "#000000"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "Y1",
                     "colour": "#ff0000"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "Z1",
                     "colour": "#00ff00"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "V1",
                     "colour": "#0000ff"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "X2",
                     "colour": "#ff00ff"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "Y2",
                     "colour": "#00ffff"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "Z2",
                     "colour": "#ffff00"
                 },
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "V2",
                     "colour": "#ffc800"
                 }

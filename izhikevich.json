@@ -54,5 +54,30 @@
     ],
     "t_start":"0",
     "t_end":"300",
-    "dt":"0.01"
+    "dt":"0.01",
+
+    "display": [
+        {
+            "abscissa_axis": {
+                "max": "-2.",
+                "min": "-16.0"
+            },
+            "ordinate_axis": {
+                "max": "50.0",
+                "min": "-90.0"
+            },
+            "curves": [
+                {
+                    "abscissa": "t",
+                    "ordinate": "v",
+                    "colour": "#ee40FF"
+                },
+                {
+                    "abscissa": "t",
+                    "ordinate": "u",
+                    "colour": "#BBA0AA"
+                }
+            ]
+        }
+    ]
 }
