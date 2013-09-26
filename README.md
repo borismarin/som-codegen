@@ -9,15 +9,90 @@ Tentative specification
 
 example:
 ```json
-{"name" : "izhikevich_burster",
- "state": {"v": "v0", "u": "b*v0"},
- "state_functions": {"phi": "0.04 * v**2 + 5*v + 140"},
- "dynamics":  {"v": "phi - u + I", "u": "a * (b * v - u)"},
- "parameters":{"a": "0.02", "b": "0.2", "c": "-50", "d": "2", "I": "0", "v0": "-70"},
- "events": [{"name": "spike", "condition": "v - 30",  "direction" : "+", "effect": {"state": {"v": "c", "u": "u + d"}}},
-            {"name": "start_inj", "condition": "t - 30",  "direction" : "+", "effect": {"parameters": {"I":"15"}}},
-            {"name": "end_inj", "condition": "t - 150",  "direction" : "+", "effect": {"parameters": {"I": "0"}}}],
- "t_start": "0", "t_end": "300", "dt": "0.01"}
+{
+    "name":"izhikevich_burster",
+    "state":{
+        "v":"v0",
+        "u":"b*v0"
+    },
+    "state_functions":{
+        "phi":"0.04 * v**2 + 5*v + 140"
+    },
+    "dynamics":{
+        "v":"phi - u + I",
+        "u":"a * (b * v - u)"
+    },
+    "parameters":{
+        "a":"0.02",
+        "b":"0.2",
+        "c":"-50",
+        "d":"2",
+        "I":"0",
+        "v0":"-70"
+    },
+    "events":[
+        {
+            "name":"spike",
+            "condition":"v - 30",
+            "direction":"+",
+            "effect":{
+                "state":{
+                    "v":"c",
+                    "u":"u + d"
+                }
+            }
+        },
+        {
+            "name":"start_inj",
+            "condition":"t - 30",
+            "direction":"+",
+            "effect":{
+                "parameters":{
+                    "I":"5"
+                }
+            }
+        },
+        {
+            "name":"end_inj",
+            "condition":"t - 150",
+            "direction":"+",
+            "effect":{
+                "parameters":{
+                    "I":"0"
+                }
+            }
+        }
+    ],
+    "t_start":"0",
+    "t_end":"300",
+    "dt":"0.01",
+
+    "display": [
+        {
+            "abscissa_axis": {
+                "max": "-2.",
+                "min": "-16.0"
+            },
+            "ordinate_axis": {
+                "max": "50.0",
+                "min": "-90.0"
+            },
+            "curves": [
+                {
+                    "abscissa": "t",
+                    "ordinate": "v",
+                    "colour": "#ee40FF"
+                },
+                {
+                    "abscissa": "t",
+                    "ordinate": "u",
+                    "colour": "#BBA0AA"
+                }
+            ]
+        }
+    ]
+}
+
 ```    
 
 * Fields:
