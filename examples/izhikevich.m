@@ -95,7 +95,7 @@ end
 function [value,isterminal,direction] = events(t, state, pars)
     value = [1,1,1,];
     isterminal = [1,1,1,];
-    direction = [1,0,0,];
+    direction = [1,1,1,];
    
     v = state(1);
     u = state(2);
@@ -114,10 +114,10 @@ function [value,isterminal,direction] = events(t, state, pars)
     value(1) = v - 30;
 
     % start_inj
-    value(2) = t - 30;
+    value(2) = t - 30.0001;
 
     % end_inj
-    value(3) = t - 150;
+    value(3) = t - 150.0001;
 
 end
 

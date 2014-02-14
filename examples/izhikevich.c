@@ -1,10 +1,11 @@
 /*****************************************************************/
-/* C code automatically generated from a LEMS/SEM description.   */
+/* C code automatically generated from a dLEMS description.      */
 /* Compile with enclosed Makefile.                               */
 /* Work in progress, expect substantial changes in the template. */
 /*****************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <sundials/sundials_types.h> 
 #include <nvector/nvector_serial.h>  
@@ -21,7 +22,7 @@
 #define T1    RCONST(300)  /* total integration time */
 #define DT    RCONST(0.01)     /* output stepsize */
 
-static void PrintOutput(realtype t, N_Vector y);
+static void PrintOutput(FILE *pf, realtype t, N_Vector y);
 static void PrintRootInfo(realtype t, N_Vector y, int *rootsfound);
 static void PrintFinalStats(void *cvode_mem);
 static int check_flag(void *flagvalue, char *funcname, int opt);
@@ -86,6 +87,9 @@ int main(int narg, char **args)
     int rootsfound[NRF];
     int rootdir[] = {1,1,1,};
 
+    FILE *pout;
+    pout = stdout;
+
     state = abstol = NULL;
     cvode_mem = NULL;
 
@@ -137,7 +141,7 @@ int main(int narg, char **args)
 
     printf(" \n Integrating izhikevich_burster \n\n");
     printf("#t v, u, \n");
-    PrintOutput(t, state);
+    PrintOutput(pout, t, state);
    
     tout = DT;
     while(1) {
@@ -156,7 +160,7 @@ int main(int narg, char **args)
                 NV_Ith_S(state, 0) = c;
                 NV_Ith_S(state, 1) = u + d;
 
-	    }
+        }
             if(rootsfound[1]){
                 //start_inj
                 I = 5;
@@ -166,7 +170,7 @@ int main(int narg, char **args)
                 p[3] = d;
                 p[4] = I;
                 p[5] = v0;
-	    }
+        }
             if(rootsfound[2]){
                 //end_inj
                 I = 0;
@@ -176,18 +180,18 @@ int main(int narg, char **args)
                 p[3] = d;
                 p[4] = I;
                 p[5] = v0;
-	    }
+        }
             
 
-	    /* Restart integration with event-corrected state */
-    	    flag = CVodeSetUserData(cvode_mem, p);
-    	    if (check_flag(&flag, "CVodeSetUserData", 1)) return(1);
-	    CVodeReInit(cvode_mem, t, state);
-	    PrintRootInfo(t, state, rootsfound);
-	}
+        /* Restart integration with event-corrected state */
+            flag = CVodeSetUserData(cvode_mem, p);
+            if (check_flag(&flag, "CVodeSetUserData", 1)) return(1);
+        CVodeReInit(cvode_mem, t, state);
+        //PrintRootInfo(t, state, rootsfound);
+    }
         else
                 {
-            PrintOutput(t, state);
+            PrintOutput(pout, t, state);
             if(check_flag(&flag, "CVode", 1)) break;
             if(flag == CV_SUCCESS) {
                 tout += DT;
@@ -204,19 +208,20 @@ int main(int narg, char **args)
 
     CVodeFree(&cvode_mem);
 
+    fclose(pout);
     return(0);
 }
 
 
 
-static void PrintOutput(realtype t, N_Vector state)
+static void PrintOutput(FILE *pout, realtype t, N_Vector state)
 {
     unsigned int i = 0;
-    printf("%g", t);
+    fprintf(pout, "%g", t);
     for (i = 0; i < NEQ; i++){
-        printf(" %g", NV_Ith_S(state, i));
+        fprintf(pout, " %g", NV_Ith_S(state, i));
     }
-    printf("\n");
+    fprintf(pout, "\n");
 
     return;
 }

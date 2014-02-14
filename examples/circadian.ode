@@ -1,4 +1,6 @@
 
+#This script has been automatically generated from a dLems description
+
 #ODE definition
 Y2'=tscale * (rate__R15 - rate__R16)
 V1'=tscale * (rate__R9 - rate__R10)

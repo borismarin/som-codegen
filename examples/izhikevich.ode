@@ -1,4 +1,6 @@
 
+#This script has been automatically generated from a dLems description
+
 #ODE definition
 v'=phi - u + I
 u'=a * (b * v - u)

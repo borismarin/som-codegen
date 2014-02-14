@@ -1,4 +1,6 @@
 
+#This script has been automatically generated from a dLems description
+
 #ODE definition
 v'=iMemb / C
 
@@ -9,12 +11,12 @@ global 0 t {v=reset}
 par reset=-0.07
 par C=3.2e-12
 par thresh=-0.055
-par leakConductance=2e-10
-par leakReversal=-0.053
+par gleak=2e-10
+par eleak=-0.053
 
 #state functions
 iSyn=0
-iMemb=leakConductance * (leakReversal - v) + iSyn
+iMemb=gleak * (eleak - v) + iSyn
 
 #event handling
 # event: condition_0

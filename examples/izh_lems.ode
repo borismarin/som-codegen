@@ -1,4 +1,6 @@
 
+#This script has been automatically generated from a dLems description
+
 #ODE definition
 U'=a * (b * v / MVOLT - U) / MSEC
 v'=(0.04 * v ^ 2 / MVOLT + 5 * v + (140.0 - U + ISyn) * MVOLT) / MSEC

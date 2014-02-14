@@ -1,4 +1,6 @@
 
+#This script has been automatically generated from a dLems description
+
 #ODE definition
 y'=Q / SEC
 x'=(P - z) / SEC

@@ -1,10 +1,11 @@
 /*****************************************************************/
-/* C code automatically generated from a LEMS/SEM description.   */
+/* C code automatically generated from a dLEMS description.      */
 /* Compile with enclosed Makefile.                               */
 /* Work in progress, expect substantial changes in the template. */
 /*****************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <sundials/sundials_types.h> 
 #include <nvector/nvector_serial.h>  
@@ -20,7 +21,7 @@
 #define T1    RCONST(200.0)  /* total integration time */
 #define DT    RCONST(0.05)     /* output stepsize */
 
-static void PrintOutput(realtype t, N_Vector y);
+static void PrintOutput(FILE *pf, realtype t, N_Vector y);
 static void PrintRootInfo(realtype t, N_Vector y, int *rootsfound);
 static void PrintFinalStats(void *cvode_mem);
 static int check_flag(void *flagvalue, char *funcname, int opt);
@@ -52,6 +53,12 @@ int main(int narg, char **args)
     N_Vector state, abstol;
     void *cvode_mem;
     int flag, flagr;
+
+    FILE *pout;
+    if(!(pout = fopen("results/fn.dat", "w"))){
+        fprintf(stderr, "Cannot open file results/fn.dat. Are you trying to write to a non-existent directory? Exiting...\n");
+        exit(1);
+    }
 
     state = abstol = NULL;
     cvode_mem = NULL;
@@ -95,14 +102,14 @@ int main(int narg, char **args)
 
     printf(" \n Integrating fn1 \n\n");
     printf("#t W, V, \n");
-    PrintOutput(t, state);
+    PrintOutput(pout, t, state);
    
     tout = DT;
     while(1) {
         flag = CVode(cvode_mem, tout, state, &t, CV_NORMAL);
         
         {
-            PrintOutput(t, state);
+            PrintOutput(pout, t, state);
             if(check_flag(&flag, "CVode", 1)) break;
             if(flag == CV_SUCCESS) {
                 tout += DT;
@@ -119,19 +126,20 @@ int main(int narg, char **args)
 
     CVodeFree(&cvode_mem);
 
+    fclose(pout);
     return(0);
 }
 
 
 
-static void PrintOutput(realtype t, N_Vector state)
+static void PrintOutput(FILE *pout, realtype t, N_Vector state)
 {
     unsigned int i = 0;
-    printf("%g", t);
+    fprintf(pout, "%g", t);
     for (i = 0; i < NEQ; i++){
-        printf(" %g", NV_Ith_S(state, i));
+        fprintf(pout, " %g", NV_Ith_S(state, i));
     }
-    printf("\n");
+    fprintf(pout, "\n");
 
     return;
 }
