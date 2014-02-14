@@ -1,17 +1,15 @@
-som-codegen
-===========
+dLEMS
+=====
 
-Testing possibilities for the _Distilled Lems_ (dlems) format, used to
-generate code for numerical integrators from Lems models. Currently,
-only isolated Lems components (no populations or networks) are
-supported; check the _eco-som_ branch for a tentive multi-component
-format.
+*dLEMS* (distilled LEMS) is a [JSON](http://www.json.org/) based format, used to
+generate code for numerical integrators from LEMS models. 
 
 
-Tentative specification
------------------------
+Specification (in progress)
+---------------------------
 
 Example illustrating supported constructs:
+
 ```json
 {
     "name":"izhikevich_burster",
@@ -101,7 +99,7 @@ Example illustrating supported constructs:
 
 * Fields:
 
-    * _name_: 
+    * _name_: the name of the component being described
     
     * _state_: object containing 'var name':'initial val' pairs.
         A compact way of determining both state variable names and initial
@@ -121,10 +119,8 @@ Example illustrating supported constructs:
         not be integrated. Parameters can be changed through events,
         though.
 
-
     * _events_: list of objects with fields
         * _name_:
-
         * _condition_: expression with format f(x, s, t) = 0 where x,s,t are
             dynamical variables, state functions, parameters or time
         * _direction_: "+", "-" or "0" if the condition is met where
@@ -138,3 +134,10 @@ Example illustrating supported constructs:
     * _t_end_:
 
     * _dt_:
+    
+Notes
+-----
+
+Currently, only isolated LEMS components (no populations or networks) are
+supported; check the _eco-som_ branch for a tentive multi-component
+format.
