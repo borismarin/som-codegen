@@ -5,9 +5,9 @@ set -e
 
 generateFiles()
 {
-    generateFile $1 'matlab/matlab_ode.vm' 'matlab' 'examples/'$2'.m'
-    generateFile $1 'xpp/xpp.vm'           'xpp'    'examples/'$2'.ode'
-    generateFile $1 'cvode/cvode.vm'       'C'      'examples/'$2'.c'
+    generateFile $1 '../matlab/matlab_ode.vm' 'matlab' $2'.m'
+    generateFile $1 '../xpp/xpp.vm'           'xpp'    $2'.ode'
+    generateFile $1 '../cvode/cvode.vm'       'C'      $2'.c'
 }
 
 generateFile()
