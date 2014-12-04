@@ -1,12 +1,5 @@
-/examples/izhikevich
 examples/*.dat
 examples/*.o
-/cvode/ff
-/cvode/ff.c
-/cvode/ff.o
-/ff.c
-/fn.ode
-/fnn.m
 *.py[cod]
 
 # C extensions
