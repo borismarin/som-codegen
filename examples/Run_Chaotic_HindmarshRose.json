@@ -35,7 +35,7 @@
     "dt": "0.001",
     "display": [
         {
-            "abcissa_axis": {
+            "abscissa_axis": {
                 "max": "2100.0",
                 "min": "-100.0"
             },
@@ -45,7 +45,7 @@
             },
             "curves": [
                 {
-                    "abcissa": "t",
+                    "abscissa": "t",
                     "ordinate": "x",
                     "colour": "#000000"
                 }

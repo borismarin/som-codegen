@@ -37,9 +37,9 @@ function X = integrate()
    
     t_start = 0;
     t_end = 2000.0;
-    dt = 0.01;
+    dt = 0.001;
     tint = t_start:dt:t_end;
-    options = odeset('RelTol', 1e-3);
+    options = odeset('RelTol', 1e-6);
     [tout, xout] = ode45(@(t, x) dxdt(t, x, pars), tint, x0_, options);
 
 
