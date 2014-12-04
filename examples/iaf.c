@@ -36,13 +36,13 @@ static int dstate_dt(realtype t, N_Vector state, N_Vector dstate,  void *p){
     realtype reset = pars[0];
     realtype C = pars[1];
     realtype thresh = pars[2];
-    realtype leakConductance = pars[3];
-    realtype leakReversal = pars[4];
+    realtype gleak = pars[3];
+    realtype eleak = pars[4];
 
     realtype v = NV_Ith_S(state, 0);
 
     realtype iSyn = 0;
-    realtype iMemb = leakConductance * (leakReversal - v) + iSyn;
+    realtype iMemb = gleak * (eleak - v) + iSyn;
 
     NV_Ith_S(dstate, 0) = iMemb / C;
 
@@ -58,10 +58,10 @@ static int root_functions(realtype t, N_Vector state, realtype *gout, void *p)
     realtype reset = pars[0];
     realtype C = pars[1];
     realtype thresh = pars[2];
-    realtype leakConductance = pars[3];
-    realtype leakReversal = pars[4];
+    realtype gleak = pars[3];
+    realtype eleak = pars[4];
     realtype iSyn = 0;
-    realtype iMemb = leakConductance * (leakReversal - v) + iSyn;
+    realtype iMemb = gleak * (eleak - v) + iSyn;
 
     //condition_0
     gout[0] = v - thresh;
@@ -96,9 +96,9 @@ int main(int narg, char **args)
     realtype reset = -0.07;
     realtype C = 3.2e-12;
     realtype thresh = -0.055;
-    realtype leakConductance = 2e-10;
-    realtype leakReversal = -0.053;
-    realtype p[] = {reset, C, thresh, leakConductance, leakReversal, };
+    realtype gleak = 2e-10;
+    realtype eleak = -0.053;
+    realtype p[] = {reset, C, thresh, gleak, eleak, };
 
     realtype v = reset;
     NV_Ith_S(state, 0) = reset;

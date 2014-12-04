@@ -50,13 +50,13 @@ static int dstate_dt(realtype t, N_Vector state, N_Vector dstate,  void *p){
     realtype x = NV_Ith_S(state, 1);
     realtype z = NV_Ith_S(state, 2);
 
-    realtype Q = c - d * pow(x, 2) - y;
-    realtype P = y - a * pow(x, 3) + b * pow(x, 2) + I;
-    realtype R = s * (x - x1) - z;
+    realtype psi = c - d * pow(x, 2) - y;
+    realtype phi = y - a * pow(x, 3) + b * pow(x, 2) + I;
+    realtype rho = s * (x - x1) - z;
 
-    NV_Ith_S(dstate, 0) = Q / SEC;
-    NV_Ith_S(dstate, 1) = (P - z) / SEC;
-    NV_Ith_S(dstate, 2) = r * R / SEC;
+    NV_Ith_S(dstate, 0) = psi / SEC;
+    NV_Ith_S(dstate, 1) = (phi - z) / SEC;
+    NV_Ith_S(dstate, 2) = r * rho / SEC;
 
     return(0);
 }

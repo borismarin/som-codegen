@@ -71,14 +71,14 @@ function xdot = dxdt(t, state, pars)
     SEC = pars(12);
 
 
-    Q = c - d .* x .^ 2 - y;
-    P = y - a .* x .^ 3 + b .* x .^ 2 + I;
-    R = s .* (x - x1) - z;
+    psi = c - d .* x .^ 2 - y;
+    phi = y - a .* x .^ 3 + b .* x .^ 2 + I;
+    rho = s .* (x - x1) - z;
 
 
-    xdot(1) = Q ./ SEC;
-    xdot(2) = (P - z) ./ SEC;
-    xdot(3) = r .* R ./ SEC;
+    xdot(1) = psi ./ SEC;
+    xdot(2) = (phi - z) ./ SEC;
+    xdot(3) = r .* rho ./ SEC;
 
 end
 

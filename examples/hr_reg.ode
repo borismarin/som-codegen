@@ -2,9 +2,9 @@
 #This script has been automatically generated from a dLems description
 
 #ODE definition
-y'=Q / SEC
-x'=(P - z) / SEC
-z'=r * R / SEC
+y'=psi / SEC
+x'=(phi - z) / SEC
+z'=r * rho / SEC
 
 #initial conditions
 global 0 t {y=y0; x=x0; z=z0}
@@ -24,9 +24,9 @@ par z0=1.0
 par SEC=1.0
 
 #state functions
-Q=c - d * x ^ 2 - y
-P=y - a * x ^ 3 + b * x ^ 2 + I
-R=s * (x - x1) - z
+psi=c - d * x ^ 2 - y
+phi=y - a * x ^ 3 + b * x ^ 2 + I
+rho=s * (x - x1) - z
 
 #event handling
 

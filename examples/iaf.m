@@ -18,12 +18,12 @@ function X = integrate()
     reset = -0.07;
     C = 3.2e-12;
     thresh = -0.055;
-    leakConductance = 2e-10;
-    leakReversal = -0.053;
+    gleak = 2e-10;
+    eleak = -0.053;
 
 
     %assemble parameter array    
-    pars = [reset, C, thresh, leakConductance, leakReversal, ];
+    pars = [reset, C, thresh, gleak, eleak, ];
     
     %initial conditions
     x0_ = [reset, ];
@@ -90,8 +90,8 @@ function [value,isterminal,direction] = events(t, state, pars)
     reset = pars(1);
     C = pars(2);
     thresh = pars(3);
-    leakConductance = pars(4);
-    leakReversal = pars(5);
+    gleak = pars(4);
+    eleak = pars(5);
 
 
 
@@ -109,12 +109,12 @@ function xdot = dxdt(t, state, pars)
     reset = pars(1);
     C = pars(2);
     thresh = pars(3);
-    leakConductance = pars(4);
-    leakReversal = pars(5);
+    gleak = pars(4);
+    eleak = pars(5);
 
 
     iSyn = 0;
-    iMemb = leakConductance .* (leakReversal - v) + iSyn;
+    iMemb = gleak .* (eleak - v) + iSyn;
 
 
     xdot(1) = iMemb ./ C;
