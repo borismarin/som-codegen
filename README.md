@@ -2,7 +2,9 @@ dLEMS
 =====
 
 *dLEMS* (distilled LEMS) is a [JSON](http://www.json.org/) based format, used to
-generate code for numerical integrators from LEMS models. 
+generate code for numerical integrators from LEMS models.
+
+Work in progress! Expect major changes!
 
 
 Specification (in progress)
