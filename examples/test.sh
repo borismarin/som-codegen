@@ -13,7 +13,7 @@ generateFiles()
 generateFile()
 {
     echo "Converting $1 using template $2 (format $3) and saving to file $4"
-    python som2code.py $1 $2 $3 > $4
+    python ../som2code.py $1 $2 $3 > $4
 }
 
 generateFiles 'izhikevich.json'  'izhikevich'
