@@ -1,6 +1,7 @@
-dLEMS [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345748.svg)](https://doi.org/10.5281/zenodo.1345748)
+dLEMS  
+===== [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1345748.svg)](https://doi.org/10.5281/zenodo.1345748)
 
-=====
+
 
 *dLEMS* (distilled LEMS) is a [JSON](http://www.json.org/) based format, used to
 generate code for numerical integrators from LEMS models.
